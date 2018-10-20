@@ -5,6 +5,7 @@
 from Crypto.Cipher import AES
 import binascii
 import sys
+import copy
 
 def check_enc(text):
     nl = len(text)
@@ -64,14 +65,15 @@ if len(sys.argv) > 1:
             end = start + 32
             a = text[start:end]
             strng = "".join(a)
+            print(binascii.hexlify(strng))
             return strng
 
     #Change input from string to list.
     textlist = list(ctext)
-    ciphertext = textlist
-    IV = textlist[0:15]
-    plainlist = [chr(0) for i in range(0,48)]
-    blist = [chr(0) for i in range(0,48)]
+    ciphertext = copy.deepcopy(textlist)
+    IV = textlist[0:16]
+    plainlist = [chr(0) for i in range(0,len(ctext))]
+    blist = [chr(0) for i in range(0, len(ctext))]
     
     
 
@@ -105,17 +107,21 @@ if len(sys.argv) > 1:
 
                 #Found the right modification, get plaintext.
                 Y = ord(byte)
-                B = Y^1
+                B = Y^k
                 blist[pos] = chr(B)
                 y = ord(ciphertext[pos-16])
                 P = chr(y^B)
+                print(Y)
+                print(B)
+                print(y)
+                print(ord(P))
                 plainlist[pos] = P
 
             #For preceding bytes of block.
             else:
                 for r in range(0,k-1):
                     pad_pos = ((i*16)+15) - r
-                    textlist[pad_pos-16]=chr(ord(blist[pad_pos])^k)
+                    textlist[pad_pos-16]=chr(ord(blist[pad_pos])^k) 
 
                 found = PadOracle(StageBlocksForCheck(textlist, i))
                 byte = ciphertext[pos-16]
@@ -130,10 +136,14 @@ if len(sys.argv) > 1:
                 blist[pos] = chr(B)
                 y = ord(ciphertext[pos-16])
                 P = chr(y^B)
+                print(Y)
+                print(B)
+                print(y)
+                print(ord(P))
                 plainlist[pos] = P
 
     #Append IV to Plaintext
-    for i in range(0, 15):
+    for i in range(0, 16):
         plainlist[i] = IV[i]
 
     #Concatenate plaintext
