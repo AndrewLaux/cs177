@@ -65,7 +65,6 @@ if len(sys.argv) > 1:
             end = start + 32
             a = text[start:end]
             strng = "".join(a)
-            print(binascii.hexlify(strng))
             return strng
 
     #Change input from string to list.
@@ -111,10 +110,6 @@ if len(sys.argv) > 1:
                 blist[pos] = chr(B)
                 y = ord(ciphertext[pos-16])
                 P = chr(y^B)
-                print(Y)
-                print(B)
-                print(y)
-                print(ord(P))
                 plainlist[pos] = P
 
             #For preceding bytes of block.
@@ -136,10 +131,6 @@ if len(sys.argv) > 1:
                 blist[pos] = chr(B)
                 y = ord(ciphertext[pos-16])
                 P = chr(y^B)
-                print(Y)
-                print(B)
-                print(y)
-                print(ord(P))
                 plainlist[pos] = P
 
     #Append IV to Plaintext
