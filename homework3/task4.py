@@ -32,8 +32,8 @@ if mode == "intellegent" :
 #Dumb parsing of guess file.
 else:
     file = open(filename)
-    
-    while(file.readable):
+
+    while(file.readable()):
         guess = file.readline()
         check_pass(guess, jons_hash)
         check_pass(guess, targ_hash)
