@@ -33,6 +33,7 @@ else:
     file = open(filename)
     lines = file.readlines()
     for i in lines:
+        count += 1
         check_pass(i, jons_hash)
         check_pass(i, targ_hash)
         check_pass(i, tryn_hash)
@@ -40,6 +41,7 @@ else:
 
         
 #Reveal found passwords.
+print "{} password guesses were tried.".format(count)
 print(found)
 
 
