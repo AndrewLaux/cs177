@@ -24,4 +24,7 @@ def check_pass(guess, hash):
 check_pass("GameOfThrones", jons_hash)
 check_pass("GameOfThronesRulez", targ_hash)
 
+#Reveal found passwords.
+print(found)
+
 
