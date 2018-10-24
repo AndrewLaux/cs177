@@ -32,13 +32,12 @@ if mode == "intellegent" :
 #Dumb parsing of guess file.
 else:
     file = open(filename)
-
-    while(file.readable()):
-        guess = file.readline()
-        check_pass(guess, jons_hash)
-        check_pass(guess, targ_hash)
-        check_pass(guess, tryn_hash)
-        check_pass(guess, arya_hash)
+    lines = file.readlines()
+    for i in lines:
+        check_pass(i, jons_hash)
+        check_pass(i, targ_hash)
+        check_pass(i, tryn_hash)
+        check_pass(i, arya_hash)
 
         
 #Reveal found passwords.
