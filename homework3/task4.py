@@ -5,7 +5,6 @@ from hmac import compare_digest as compare_hash
 
 #Check password guess, given a known hash.
 def check_pass(guess, hash):
-    print(guess)
     if compare_hash(crypt.crypt(guess, hash), hash):
         found[hash] = guess
 
