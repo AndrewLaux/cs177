@@ -25,10 +25,13 @@ count = 0
 filename = sys.argv[1]
 mode = sys.argv[2]
 
+
+
 #Intellegent generation of passwords from guess file.
 if mode == "intellegent" : 
     with open(filename) as f:
         for line in f:
+            mutations = ()
             mutations[0] = line
 
             #Add capital mutation
