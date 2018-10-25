@@ -33,7 +33,7 @@ if mode == "intellegent" :
 else:
     file = open(filename)
     lines = file.readlines()
-    temp = [line[:-1] for line in file]
+    temp = [line[:-1] for line in lines]
     for i in temp:
         count += 1
         check_pass(i, jons_hash)
