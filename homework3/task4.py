@@ -12,7 +12,7 @@ def check_pass(guess, hash, count):
 #Hashes from etc/shadow.txt file.
 jons_hash = "$6$aBcDeF$qn4wyWpQKwjaKGr02tGUWKcFjl0p90b68.oaaJTFX87UzsSWIzq3ZoAEG0/xUQ1kcYTiHkKqye1Qat6vL4rMZ."
 targ_hash = "aa.YVJDT1VruA"
-tryn_hash = "$5$aAbBcCdD$TSZ4rpRmpbVDoas2FK97mHEZwXX"
+tryn_hash = "$5$aAbBcCdD$TSZ4rpRmpbVDoas2FK97mHEZwXX.TIUxy.2JeYlmYV."
 arya_hash = "$1$bAc99821$noxC9VXXiMuA0IRfECCVA/"
 
 #Empty dictionary for found passwords.
@@ -28,12 +28,12 @@ mode = sys.argv[2]
 
 
 #Intellegent generation of passwords from guess file.
-if mode == "intellegent" : 
+if mode == "intelligent" : 
     with open(filename) as f:
         for line in f:
             mutations = list()
 
-            mutations.append(line)
+            mutations.append(line[:-1])
 
             #Add capital mutation
             mutations.append(mutations[0].capitalize())
@@ -55,6 +55,50 @@ if mode == "intellegent" :
 
             #Reverse original word
             mutations.append(mutations[0][::-1])
+
+            #Replace e with 3
+            new = mutations[0].replace('e', '3')
+            new = new.replace('E', '3')
+            mutations.append(new)
+            mutations.append(new.upper())
+
+            #Replace o with 0
+            new = mutations[0].replace('o', '0')
+            new = new.replace('O', '0')
+            mutations.append(new)
+            mutations.append(new.upper())
+
+            #Replace l with 1
+            new = mutations[0].replace('l', '1')
+            new = new.replace('L', '1')
+            mutations.append(new)
+            mutations.append(new.upper())
+
+            #Replace s with 5
+            new = mutations[0].replace('s', '5')
+            new = new.replace('S', '5')
+            mutations.append(new)
+            mutations.append(new.upper())
+
+            #Replace t with 7 
+            new = mutations[0].replace('t', '7')
+            new = new.replace('T', '7')
+            mutations.append(new)
+            mutations.append(new.upper())
+
+            #All 1337 speak replacements
+            new = mutations[0].replace('e', '3')
+            new = new.replace('E', '3')
+            new = new.replace('o', '0')
+            new = new.replace('O', '0')
+            new = new.replace('l', '1')
+            new = new.replace('L', '1')
+            new = new.replace('s', '5')
+            new = new.replace('S', '5')
+            new = new.replace('t', '7')
+            new = new.replace('T', '7')
+            mutations.append(new)
+            mutations.append(new.upper())
 
             #Try each mutation
             for word in mutations:
