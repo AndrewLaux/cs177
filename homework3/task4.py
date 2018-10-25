@@ -7,7 +7,7 @@ from hmac import compare_digest as compare_hash
 def check_pass(guess, hash):
     if compare_hash(crypt.crypt(guess, hash), hash):
         found[hash] = guess
-        println(guess)
+
 
 #Hashes from etc/shadow.txt file.
 jons_hash = "$6$aBcDeF$qn4wyWpQKwjaKGr02tGUWKcFjl0p90b68.oaaJTFX87UzsSWIzq3ZoAEG0/xUQ1kcYTiHkKqye1Qat6vL4rMZ."
@@ -33,7 +33,8 @@ if mode == "intellegent" :
 else:
     file = open(filename)
     lines = file.readlines()
-    for i in lines:
+    temp = [line[:-1] for line in file]
+    for i in temp:
         count += 1
         check_pass(i, jons_hash)
         check_pass(i, targ_hash)
