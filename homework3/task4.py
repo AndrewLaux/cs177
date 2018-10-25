@@ -32,6 +32,7 @@ if mode == "intellegent" :
     with open(filename) as f:
         for line in f:
             mutations = ()
+            
             mutations[0] = line
 
             #Add capital mutation
