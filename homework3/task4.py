@@ -32,20 +32,20 @@ if mode == "intellegent" :
             mutations[0] = line
 
             #Add capital mutation
+            mutations[1] = mutations[0].capitalize()
 
             #Add capslock mutation
+            mutations[2] = mutations[0].upper()
 
             #Add numbers 1-10, 420, 66, 22, 99, 55, 69, 13, 777, 666, 
 
-            
-
-        
-    for i in temp:
-        count += 1
-        check_pass(i, jons_hash, count)
-        check_pass(i, targ_hash, count)
-        check_pass(i, tryn_hash, count)
-        check_pass(i, arya_hash, count)
+            #Try each mutation
+            for word in mutations:
+                count += 1
+                check_pass(i, jons_hash, count)
+                check_pass(i, targ_hash, count)
+                check_pass(i, tryn_hash, count)
+                check_pass(i, arya_hash, count)
 
 #Dumb parsing of guess file.
 else:
