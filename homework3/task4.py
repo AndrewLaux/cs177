@@ -4,9 +4,9 @@ import getpass
 from hmac import compare_digest as compare_hash
 
 #Check password guess, given a known hash.
-def check_pass(guess, hash):
+def check_pass(guess, hash, count):
     if compare_hash(crypt.crypt(guess, hash), hash):
-        found[hash] = guess
+        found[hash] = (guess, count)
 
 
 #Hashes from etc/shadow.txt file.
@@ -27,7 +27,25 @@ mode = sys.argv[2]
 
 #Intellegent generation of passwords from guess file.
 if mode == "intellegent" : 
-    pass
+    with open(filename) as f:
+        for line in f:
+            mutations[0] = line
+
+            #Add capital mutation
+
+            #Add capslock mutation
+
+            #Add numbers 1-10, 420, 66, 22, 99, 55, 69, 13, 777, 666, 
+
+            
+
+        
+    for i in temp:
+        count += 1
+        check_pass(i, jons_hash, count)
+        check_pass(i, targ_hash, count)
+        check_pass(i, tryn_hash, count)
+        check_pass(i, arya_hash, count)
 
 #Dumb parsing of guess file.
 else:
@@ -36,10 +54,10 @@ else:
     temp = [line[:-1] for line in lines]
     for i in temp:
         count += 1
-        check_pass(i, jons_hash)
-        check_pass(i, targ_hash)
-        check_pass(i, tryn_hash)
-        check_pass(i, arya_hash)
+        check_pass(i, jons_hash, count)
+        check_pass(i, targ_hash, count)
+        check_pass(i, tryn_hash, count)
+        check_pass(i, arya_hash, count)
 
         
 #Reveal found passwords.
