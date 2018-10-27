@@ -22,8 +22,13 @@ found = {}
 count = 0
 
 #Get args
-filename = sys.argv[1]
-mode = sys.argv[2]
+if len(sys.argv) == 1:
+    print("no arguments detected- \n running intelligent mode- \n using 1000.txt as input -\n")
+    filename = "homework3/1000.txt"
+    mode = "intelligent"
+else:
+    filename = sys.argv[1]
+    mode = sys.argv[2]
 
 
 
